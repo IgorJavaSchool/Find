@@ -4,6 +4,9 @@ package yanevskyy.valid;
  * Created by MM on 12.06.2016.
  */
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Checks valid name for log file.
  */
@@ -16,17 +19,15 @@ public class ValidLog implements Validator {
      */
     @Override
     public boolean validKey(String logName) {
-        String[] partsName = logName.split("[.]");
-        if (partsName.length < 2){
-            System.out.println("Log file name is not correct");
-            return false;
-        } else {
-            if (partsName[partsName.length - 1].equals("txt")){
-                return true;
-            } else {
-                System.out.println("Log file name is not correct");
-                return false;
-            }
-        }
+        boolean result = check("^(.)+\\.txt$", logName);
+        if (!result)
+            System.out.println("Name log file is not correct");
+        return result;
+    }
+
+    public boolean check(String regExp, String text){
+        Pattern pattern = Pattern.compile(regExp);
+        Matcher matcher = pattern.matcher(text);
+        return matcher.matches();
     }
 }

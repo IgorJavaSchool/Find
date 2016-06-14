@@ -11,20 +11,25 @@ public class FindMaskTest {
     @Test
     public void findMask() throws Exception {
         String path = "C:\\Users\\MM\\Documents\\test";
-        String name = "*.*";
+        String name = "qwerty.*";
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Найден Файл: C:\\Users\\MM\\Documents\\test\\Chat\\qwerty.txt\n" +
-                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Chess\\bishops.java\n" +
-                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Chess\\king.java\n" +
-                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Chess\\knights.java\n" +
-                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Chess\\pawns.java\n" +
-                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Chess\\queen.java\n" +
-                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Chess\\rooks.java\n" +
                 "Найден Файл: C:\\Users\\MM\\Documents\\test\\Find\\qqq\\qwerty.txt\n" +
                 "Найден Файл: C:\\Users\\MM\\Documents\\test\\qwerty.txt\n" +
                 "Найден Файл: C:\\Users\\MM\\Documents\\test\\Socket\\qwerty.txt\n");
 
         String result = new FindMask(path, name).findMask();
+
+        assertEquals(result, stringBuilder.toString());
+
+        name = "qwerty.tx?";
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("Найден Файл: C:\\Users\\MM\\Documents\\test\\Chat\\qwerty.txt\n" +
+                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Find\\qqq\\qwerty.txt\n" +
+                "Найден Файл: C:\\Users\\MM\\Documents\\test\\qwerty.txt\n" +
+                "Найден Файл: C:\\Users\\MM\\Documents\\test\\Socket\\qwerty.txt\n");
+
+        result = new FindMask(path, name).findMask();
 
         assertEquals(result, stringBuilder.toString());
     }

@@ -36,6 +36,13 @@ public class SelectValidNameTest {
 
         assertEquals(result, selectValidName.validKey(key, reg));
 
+        key = "-m";
+        reg = "*.*";
+        result = true;
+
+
+        assertEquals(result, selectValidName.validKey(key, reg));
+
         key = "-f";
         reg = "qwerty.txt";
         result = true;

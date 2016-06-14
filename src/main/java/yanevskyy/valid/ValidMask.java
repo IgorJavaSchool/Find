@@ -23,7 +23,7 @@ public class ValidMask implements Validator {
     public boolean validKey(String mask) {
         boolean result = check("^(.)+\\.(.)+$", mask);
         if (result)
-            result = check("^(.)+[\\*|\\?]+(.)+$", mask);
+            result = mask.contains("*") || mask.contains("?");
         if (!result)
             System.out.println("Mask is not correct");
         return result;
